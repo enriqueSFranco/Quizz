@@ -1,6 +1,6 @@
 import type { ErrorResponse, Question } from '../types'
 
-export async function getQuestions(): Promise<Question[]> {
+export async function getQuestions(limit: number): Promise<Question[]> {
   try {
     const response = await fetch('http://localhost:5173/src/api/data.json')
     if (!response.ok) {
@@ -13,7 +13,8 @@ export async function getQuestions(): Promise<Question[]> {
       }
       throw error
     }
-    const data = await response.json()
+    const { questions } = await response.json()
+    const data = questions.sort(() => Math.random() - 0.5).slice(0, limit)
     return data
   } catch (error) {
     return error
