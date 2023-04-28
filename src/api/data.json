@@ -1,0 +1,114 @@
+{
+  "questions": [
+    {
+      "id": 1,
+      "question": "¿Qué es TypeScript?",
+      "options": [
+        "Un framework para crear aplicaciones web.",
+        "Un lenguaje de programación de alto nivel.",
+        "Un sistema de gestión de bases de datos.",
+        "Un editor de texto para programación."
+      ],
+      "answer": 1
+    },
+    {
+      "id": 2,
+      "question": "¿Para qué se utiliza TypeScript?",
+      "options": [
+        "Para crear aplicaciones de escritorio.",
+        "Para crear aplicaciones móviles.",
+        "Para crear aplicaciones web.",
+        "Para crear juegos en línea."
+      ],
+      "answer": 2
+    },
+    {
+      "id": 3,
+      "question": "¿Qué ventajas tiene TypeScript sobre JavaScript?",
+      "options": [
+        "Mayor velocidad de ejecución.",
+        "Mayor compatibilidad con navegadores antiguos.",
+        "Mayor facilidad de aprendizaje.",
+        "Mayor seguridad y detección de errores en tiempo de compilación."
+      ],
+      "answer": 3
+    },
+    {
+      "id": 4,
+      "question": "¿Cómo se define un tipo de dato en TypeScript?",
+      "options": [
+        "Con la palabra clave 'var'.",
+        "Con la palabra clave 'type'.",
+        "Con la palabra clave 'class'.",
+        "Con la palabra clave 'enum'."
+      ],
+      "answer": 1
+    },
+    {
+      "id": 5,
+      "question": "¿Qué es un decorador en TypeScript?",
+      "options": [
+        "Un elemento de diseño visual para mejorar la apariencia de la interfaz gráfica de usuario.",
+        "Una función que modifica el comportamiento de una clase o método.",
+        "Una variable que almacena un valor numérico.",
+        "Un patrón de diseño para mejorar la eficiencia del código."
+      ],
+      "answer": 2
+    },
+    {
+      "id": 6,
+      "question": "¿Qué son los módulos en TypeScript?",
+      "options": [
+        "Una forma de encapsular código en secciones lógicas y reutilizables.",
+        "Una forma de conectar diferentes bases de datos entre sí.",
+        "Un tipo de dato para representar fechas y horas.",
+        "Un patrón de diseño para crear interfaces de usuario complejas."
+      ],
+      "answer": 0
+    },
+    {
+      "id": 7,
+      "question": "¿Qué es una interfaz en TypeScript?",
+      "options": [
+        "Un elemento de diseño visual para mejorar la apariencia de la interfaz gráfica de usuario.",
+        "Una estructura que define la forma de un objeto.",
+        "Una función que modifica el comportamiento de una clase o método.",
+        "Un patrón de diseño para mejorar la eficiencia del código."
+      ],
+      "answer": 1
+    },
+    {
+      "id": 8,
+      "question": "¿Qué son los genéricos en TypeScript?",
+      "options": [
+        "Una forma de definir variables globales en el código.",
+        "Un patrón de diseño para mejorar la eficiencia del código.",
+        "Una forma de crear funciones que trabajan con diferentes tipos de datos.",
+        "Una técnica para mejorar la velocidad de ejecución del código."
+      ],
+      "answer": 2
+    },
+    {
+      "id": 9,
+      "question": "¿Qué son los tipos opcionales en TypeScript?",
+      "options": [
+        "Tipos que no son necesarios en TypeScript",
+        "Tipos que pueden tener un valor undefined o null",
+        "Tipos que no se pueden asignar a variables",
+        "Tipos que sólo se pueden asignar a variables de tipo any"
+      ],
+      "respuestaCorrecta": "Tipos que pueden tener un valor undefined o null"
+    },
+    {
+      "id": 10,
+      "question": "¿Qué es un módulo en TypeScript?",
+      "options": [
+        "Una función que retorna un objeto con propiedades y métodos",
+        "Un archivo con código TypeScript que contiene clases, funciones, variables y/o interfaces que pueden ser exportados e importados en otros archivos TypeScript",
+        "Un archivo con código TypeScript que contiene sólo interfaces",
+        "Una librería externa a TypeScript que se utiliza para agregar funcionalidad extra al código"
+      ],
+      "respuestaCorrecta": "Un archivo con código TypeScript que contiene clases, funciones, variables y/o interfaces que pueden ser exportados e importados en otros archivos TypeScript"
+    }
+  ]
+}
