@@ -4,12 +4,31 @@ import type { Question, ErrorResponse } from '../types'
 interface QuestionState {
   questions: Question[]
   currentQuestion: number
+  selectedAnswer: (questionId: number, answerIndex: number) => void
   fetchQuestions: () => Promise<Question[]>
 }
 
-export const useQuestion = create<QuestionState>(set => ({
+export const useQuestion = create<QuestionState>((set, get) => ({
   questions: [],
   currentQuestion: 1,
+  selectedAnswer: (questionId: number, answerIndex: number): void => {
+    const { questions } = get() // recuperamos el estado de questions
+    const newQuestions: Question[] = structuredClone(questions)
+
+    // encontrar el indice de la pregunta
+    const questionIndex: number = newQuestions.findIndex(question => question.id === questionId)
+    // recuperamos la informacion de la pregunta
+    const questionInfo = newQuestions[questionIndex]
+    // comparamos si la respuesta de la pregunra es igual a la respuesta que selecciono el usuario
+    const isCorrectUserAnswer = questionInfo.answer === answerIndex
+
+    newQuestions[questionIndex] = {
+      ...questionInfo,
+      questionUserSelected: answerIndex,
+      isCorrectUserAnswer
+    }
+    set({ questions: newQuestions })
+  },
   fetchQuestions: async () => {
     try {
       const response = await fetch('http://localhost:5173/src/api/data.json')
@@ -23,8 +42,9 @@ export const useQuestion = create<QuestionState>(set => ({
         }
         throw error
       }
-      const data = await response.json()
-      set(data)
+      const { questions } = await response.json()
+      const data = questions.sort(() => Math.random() - 0.5).slice(0, 5)
+      set({ questions: data })
       return data
     } catch (error) {
       return error

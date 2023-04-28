@@ -1,27 +1,29 @@
 import { useQuestion } from '../store/question'
+import { type Question as QuestionType } from '../types'
 import { uuid } from '../utils/uuid'
+import Prisma from './Prisma'
+import Option from './Option'
 
-const Question = () => {
-  const questions = useQuestion(state => state.questions)
+interface Props {
+  questionInfo: QuestionType
+}
+
+const Question: React.FC<Props> = ({ questionInfo }) => {
+  const selectedAnswer = useQuestion(state => state.selectedAnswer)
+  const { id, question, options } = questionInfo
+
+  const handleSelectedAnswer = (answerIndex: number) => () => selectedAnswer(id, answerIndex)
 
   return (
-    <article className='w-full h-full text-white'>
+    <article className='text-white flex flex-col gap-7'>
       {/* pregunta */}
-      {questions.map(({ id, question, options }) => (
-        <div key={`question-id_${id}`}>
-          <p className='text-xl text-center'>{question}</p>
-          <div>
-            {/* opciones */}
-            <ul className='divide-y divide-slate-200'>
-              {options.map(option => (
-                <li key={`option-id_${uuid()}`} className='h-16 first:pt-0 last:pb-0'>
-                  <div className='h-full flex items-center cursor-pointer hover:bg-slate-900'>{option}</div>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      ))}
+      <Prisma question={question} />
+      {/* opciones */}
+      <ul className='divide-y divide-slate-200'>
+        {options.map((option, index) => (
+          <Option key={`option-id_${uuid()}`} option={option} onSelectedAnswer={handleSelectedAnswer(index)} />
+        ))}
+      </ul>
     </article>
   )
 }
