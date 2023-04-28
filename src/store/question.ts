@@ -5,6 +5,7 @@ interface QuestionState {
   questions: Question[]
   currentQuestion: number
   selectedAnswer: (questionId: number, answerIndex: number) => void
+  goNextQuestion: () => void
   fetchQuestions: () => Promise<Question[]>
 }
 
@@ -24,10 +25,17 @@ export const useQuestion = create<QuestionState>((set, get) => ({
 
     newQuestions[questionIndex] = {
       ...questionInfo,
-      questionUserSelected: answerIndex,
+      answerUserSelected: answerIndex,
       isCorrectUserAnswer
     }
     set({ questions: newQuestions })
+  },
+  goNextQuestion: () => {
+    const { currentQuestion, questions } = get()
+    const totalQuestions = questions.length
+    const nextQuestion = currentQuestion + 1
+
+    if (nextQuestion < totalQuestions) set({ currentQuestion: nextQuestion })
   },
   fetchQuestions: async () => {
     try {
