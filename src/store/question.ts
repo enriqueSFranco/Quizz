@@ -1,15 +1,18 @@
 import { create } from 'zustand'
+import { persist, createJSONStorage } from 'zustand/middleware'
 import type { Question, ErrorResponse } from '../types'
+import { getQuestions } from '../services/questionService'
 
 interface QuestionState {
   questions: Question[]
   currentQuestion: number
   selectedAnswer: (questionId: number, answerIndex: number) => void
   goNextQuestion: () => void
-  fetchQuestions: () => Promise<Question[]>
+  goBackQuestion: () => void
+  fetchQuestions: (limit: number) => Promise<void>
 }
 
-export const useQuestion = create<QuestionState>((set, get) => ({
+export const useQuestion = create<QuestionState>()(persist((set, get) => ({
   questions: [],
   currentQuestion: 1,
   selectedAnswer: (questionId: number, answerIndex: number): void => {
@@ -37,25 +40,21 @@ export const useQuestion = create<QuestionState>((set, get) => ({
 
     if (nextQuestion < totalQuestions) set({ currentQuestion: nextQuestion })
   },
-  fetchQuestions: async () => {
+  goBackQuestion: () => {
+    const { currentQuestion } = get()
+    const prevQuestion = currentQuestion - 1
+
+    if (prevQuestion > 0) set({ currentQuestion: prevQuestion })
+  },
+  fetchQuestions: async (limit: number): Promise<void> => {
     try {
-      const response = await fetch('http://localhost:5173/src/api/data.json')
-      if (!response.ok) {
-        const statusCode: string = response.status === 0 || response.status === null ? 'Oppps, ha ocurrido un error durante la peticion.' : String(response.status)
-        const statusText: string = response.statusText === '' ? 'Oppps, ha ocurrido un error' : response.statusText
-        const error: ErrorResponse = {
-          err: new Error('Oppps, ha ocurrido un error durante la peticion.'),
-          statusCode,
-          statusText
-        }
-        throw error
-      }
-      const { questions } = await response.json()
-      const data = questions.sort(() => Math.random() - 0.5).slice(0, 5)
-      set({ questions: data })
-      return data
+      const questions = await getQuestions(limit)
+      set({ questions })
     } catch (error) {
       return error
     }
   }
+}), {
+  name: '__zustand__state__',
+  storage: createJSONStorage(() => localStorage)
 }))

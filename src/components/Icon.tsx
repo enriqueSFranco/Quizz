@@ -7,3 +7,47 @@ export function IconTypeScript() {
     </span>
   );
 }
+
+export function IconArrowRight() {
+  return (
+    <svg
+      xmlns='http://www.w3.org/2000/svg'
+      width='22'
+      height='22'
+      viewBox='0 0 24 24'
+    >
+      <g
+        fill='none'
+        stroke='#fff'
+        strokeLinecap='round'
+        strokeLinejoin='round'
+        strokeWidth='2'
+      >
+        <path d='M16.4 7l5.1 5-5.1 5' data-name='Right'></path>
+        <path d='M2.5 12h16.7'></path>
+      </g>
+    </svg>
+  );
+}
+
+export function IconArrowLeft() {
+  return (
+    <svg
+      xmlns='http://www.w3.org/2000/svg'
+      width='22'
+      height='22'
+      viewBox='0 0 24 24'
+    >
+      <g
+        fill='none'
+        stroke='#fff'
+        strokeLinecap='round'
+        strokeLinejoin='round'
+        strokeWidth='2'
+      >
+        <path d='M7.6 7l-5.1 5 5.1 5' data-name='Right'></path>
+        <path d='M21.5 12H4.8'></path>
+      </g>
+    </svg>
+  );
+}

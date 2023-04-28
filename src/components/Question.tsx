@@ -15,7 +15,7 @@ const Question: React.FC<Props> = ({ questionInfo }) => {
   const handleSelectedAnswer = (answerIndex: number) => () => selectedAnswer(id, answerIndex)
 
   return (
-    <article className='text-white flex flex-col gap-7'>
+    <article className='w-full text-white flex flex-col gap-7'>
       {/* pregunta */}
       <Prisma question={question} />
       {/* opciones */}
