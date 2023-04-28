@@ -1,12 +1,9 @@
-interface Props {
-  children: React.ReactNode
-}
+import { PropsChildren } from '../types'
 
-const LayoutMain: React.FC<Props> = ({ children }) => {
+const LayoutMain: React.FC<PropsChildren> = ({ children }) => {
   return (
-    <main className='flex flex-col items-center gap-4'>
-
-      <section>
+    <main className='w-full'>
+      <section className='rounded-md overflow-hidden w-full'>
         {children}
       </section>
     </main>

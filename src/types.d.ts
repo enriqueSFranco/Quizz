@@ -4,11 +4,15 @@ export interface Question {
   options: string[]
   answer: number
   questionUserSelected?: number
-  isCorrectAnswerUserSelected?: boolean
+  isCorrectUserAnswer?: boolean
 }
 
 export interface ErrorResponse {
   err: Error
   statusCode: string
   statusText: string
+}
+
+export interface PropsChildren {
+  children: React.ReactNode
 }
