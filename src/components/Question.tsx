@@ -1,6 +1,6 @@
 import { useQuestion } from '../store/question'
 import { type Question as QuestionType } from '../types'
-import { uuid } from '../utils/uuid'
+import { uuid, getBackgroundColor } from '../utils'
 import Prisma from './Prisma'
 import Option from './Option'
 
@@ -10,7 +10,7 @@ interface Props {
 
 const Question: React.FC<Props> = ({ questionInfo }) => {
   const selectedAnswer = useQuestion(state => state.selectedAnswer)
-  const { id, question, options } = questionInfo
+  const { id, question, options, answerUserSelected } = questionInfo
 
   const handleSelectedAnswer = (answerIndex: number) => () => selectedAnswer(id, answerIndex)
 
@@ -21,7 +21,13 @@ const Question: React.FC<Props> = ({ questionInfo }) => {
       {/* opciones */}
       <ul className='divide-y divide-slate-200'>
         {options.map((option, index) => (
-          <Option key={`option-id_${uuid()}`} option={option} onSelectedAnswer={handleSelectedAnswer(index)} />
+          <Option
+            key={`option-id_${uuid()}`}
+            option={option}
+            answerUserSelected={answerUserSelected}
+            bgColor={getBackgroundColor(questionInfo, index)}
+            onSelectedAnswer={handleSelectedAnswer(index)}
+          />
         ))}
       </ul>
     </article>

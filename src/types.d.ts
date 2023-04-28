@@ -3,7 +3,7 @@ export interface Question {
   question: string
   options: string[]
   answer: number
-  questionUserSelected?: number
+  answerUserSelected?: number
   isCorrectUserAnswer?: boolean
 }
 
@@ -12,7 +12,12 @@ export interface ErrorResponse {
   statusCode: string
   statusText: string
 }
-
 export interface PropsChildren {
   children: React.ReactNode
+}
+
+export interface BackgroundColors {
+  transparent: string
+  succes: string
+  error: string
 }
